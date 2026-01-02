@@ -42,7 +42,7 @@ const Login = () => {
       <div className="login-container">
         <div className="login-header">
           <div className="login-logo">
-            <img src="/fidelya.png" alt="Fidelya Logo" style={{ width: '48px', height: '48px', borderRadius: '12px' }} />
+            <img src="/fidelya.png" alt="Fidelya Logo" style={{ width: '150px', height: '150px', borderRadius: '12px' }} />
           </div>
           <h1 className="login-title">Welcome back</h1>
           <p className="login-subtitle">Sign in to your account to continue</p>
