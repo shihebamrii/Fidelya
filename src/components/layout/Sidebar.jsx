@@ -16,10 +16,7 @@ const Sidebar = ({ items, title, logo }) => {
       <div className="sidebar-header">
         <div className="sidebar-logo">
           {logo || (
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="var(--color-primary)" />
-              <path d="M10 16L14 20L22 12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <img src="/fidelya.png" alt="Fidelya Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
           )}
           <span className="sidebar-title">{title || 'Loyalty'}</span>
         </div>

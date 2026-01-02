@@ -42,10 +42,7 @@ const Login = () => {
       <div className="login-container">
         <div className="login-header">
           <div className="login-logo">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <rect width="48" height="48" rx="12" fill="var(--color-primary)" />
-              <path d="M15 24L21 30L33 18" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <img src="/fidelya.png" alt="Fidelya Logo" style={{ width: '48px', height: '48px', borderRadius: '12px' }} />
           </div>
           <h1 className="login-title">Welcome back</h1>
           <p className="login-subtitle">Sign in to your account to continue</p>
