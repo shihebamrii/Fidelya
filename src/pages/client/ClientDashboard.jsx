@@ -100,7 +100,16 @@ const ClientDashboard = () => {
                     </div>
                 </div>
                 <button className="qr-btn" onClick={() => setShowQR(true)} aria-label="Show QR Code">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4h-4v-2h-3v4h3v-4h4v0m0-4v4m0 0h6m-6 0H9m-2 0H3m2-6h2a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2zm10-6h2a2 2 0 002-2V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v6a2 2 0 002 2zm-12 8h2a2 2 0 002-2v-2a2 2 0 00-2-2H5a2 2 0 00-2 2v2a2 2 0 002 2z" /></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2"/>
+                        <rect x="13" y="13" width="3" height="3" rx="0.5" fill="currentColor"/>
+                        <rect x="16" y="16" width="3" height="3" rx="0.5" fill="currentColor"/>
+                        <rect x="19" y="13" width="3" height="3" rx="0.5" fill="currentColor"/>
+                        <rect x="19" y="19" width="3" height="3" rx="0.5" fill="currentColor"/>
+                        <rect x="13" y="19" width="3" height="3" rx="0.5" fill="currentColor"/>
+                    </svg>
                 </button>
             </header>
 
