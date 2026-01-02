@@ -10,7 +10,13 @@ const ClientDashboard = () => {
   const [activeTab, setActiveTab] = useState('offers'); 
   const [showQR, setShowQR] = useState(false);
 
-  const { data, isLoading, error } = useQuery({
+  // Activation State
+  const [activationName, setActivationName] = useState('');
+  const [activationCode, setActivationCode] = useState('');
+  const [isActivating, setIsActivating] = useState(false);
+  const [activationError, setActivationError] = useState('');
+
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['client-dashboard', businessSlug, clientId],
     queryFn: () => clientApi.getDashboard(businessSlug, clientId),
     retry: false
@@ -19,7 +25,7 @@ const ClientDashboard = () => {
   const { data: qrData } = useQuery({
     queryKey: ['client-qr', businessSlug, clientId],
     queryFn: () => clientApi.getQR(businessSlug, clientId),
-    enabled: !!data,
+    enabled: !!data && data?.data?.client?.isActivated !== false,
   });
 
   // Debugging Log
@@ -28,12 +34,75 @@ const ClientDashboard = () => {
     if (error) console.error('Dashboard Error:', error);
   }, [data, error]);
 
+  const handleActivate = async (e) => {
+    e.preventDefault();
+    setIsActivating(true);
+    setActivationError('');
+    try {
+      await clientApi.activateCard(businessSlug, clientId, {
+        name: activationName,
+        activationCode: activationCode
+      });
+      await refetch();
+    } catch (err) {
+      setActivationError(err.response?.data?.message || 'Activation failed. Please check your code.');
+    } finally {
+      setIsActivating(false);
+    }
+  };
+
   if (isLoading) return <div className="client-page"><div className="client-loading"><Spinner size="lg" /></div></div>;
   if (error) return <div className="client-page"><div className="client-error">Card Not Found</div></div>;
 
   // Safely extract data with defaults
   const dashboardData = data?.data || {};
   const client = dashboardData.client || {};
+  const business = dashboardData.business || {};
+
+  // If client is not activated, show activation screen
+  if (client.isActivated === false) {
+    return (
+      <div className="client-page">
+        <div className="activation-container">
+          <div className="activation-card">
+            <h2>Activate Your Card</h2>
+            <p>Welcome to <strong>{business.name || 'our platform'}</strong>! Please provide your details to activate your loyalty card.</p>
+            
+            <form onSubmit={handleActivate} className="activation-form">
+              <div className="form-group">
+                <label>Your Full Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter your name"
+                  value={activationName}
+                  onChange={(e) => setActivationName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Activation Code</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter code"
+                  value={activationCode}
+                  onChange={(e) => setActivationCode(e.target.value)}
+                  required
+                />
+                <small>Assigned by the business</small>
+              </div>
+              
+              {activationError && <div className="error-msg">{activationError}</div>}
+              
+              <button type="submit" disabled={isActivating} className="activate-btn">
+                {isActivating ? 'Activating...' : 'Activate Now'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const availableRewards = Array.isArray(dashboardData.availableRewards) ? dashboardData.availableRewards : [];
   const rawTransactions = Array.isArray(dashboardData.transactions) ? dashboardData.transactions : [];
 

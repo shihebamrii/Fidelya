@@ -125,6 +125,7 @@ export const businessApi = {
 export const clientApi = {
   getDashboard: (slug, clientId) => api.get(`/client/${slug}/${clientId}`),
   getQR: (slug, clientId) => api.get(`/client/${slug}/${clientId}/qr`),
+  activateCard: (slug, clientId, data) => api.post(`/client/${slug}/${clientId}/activate`, data),
 };
 
 export default api;
