@@ -13,6 +13,7 @@ const Businesses = () => {
     category: '',
     city: '',
     contactEmail: '',
+    activationCode: '',
   });
   const [formError, setFormError] = useState('');
 
@@ -29,7 +30,7 @@ const Businesses = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['admin-businesses']);
       setIsModalOpen(false);
-      setFormData({ name: '', category: '', city: '', contactEmail: '' });
+      setFormData({ name: '', category: '', city: '', contactEmail: '', activationCode: '' });
     },
     onError: (error) => {
       setFormError(error.response?.data?.message || 'Failed to create business');
@@ -154,6 +155,12 @@ const Businesses = () => {
               placeholder="contact@business.com"
               value={formData.contactEmail}
               onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+            />
+            <Input
+              label="Activation Code"
+              placeholder="Assign a generic code (e.g., 2024)"
+              value={formData.activationCode}
+              onChange={(e) => setFormData({ ...formData, activationCode: e.target.value })}
             />
           </div>
           <div className="modal-actions">

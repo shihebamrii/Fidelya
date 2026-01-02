@@ -23,7 +23,7 @@ const BusinessDetail = () => {
   const [userForm, setUserForm] = useState({ email: '', password: '', name: '' }); 
   // reusing userForm for create/edit. For edit, password is optional.
   const [clientForm, setClientForm] = useState({ name: '', phone: '', email: '', initialPoints: 0 });
-  const [editForm, setEditForm] = useState({ name: '', category: '', city: '', contactEmail: '' });
+  const [editForm, setEditForm] = useState({ name: '', category: '', city: '', contactEmail: '', activationCode: '' });
   const [bulkCount, setBulkCount] = useState(50);
   const [generationResult, setGenerationResult] = useState(null);
   const [qrData, setQrData] = useState(null);
@@ -115,7 +115,8 @@ const BusinessDetail = () => {
         name: b.name || '',
         category: b.category || '',
         city: b.city || '',
-        contactEmail: b.contactEmail || ''
+        contactEmail: b.contactEmail || '',
+        activationCode: b.activationCode || ''
       });
       setEditModalOpen(true);
     }
@@ -376,6 +377,12 @@ const BusinessDetail = () => {
             type="email"
             value={editForm.contactEmail}
             onChange={(e) => setEditForm(prev => ({ ...prev, contactEmail: e.target.value }))}
+          />
+          <Input 
+            label="Activation Code"
+            placeholder="Code for new clients (e.g., 2024)"
+            value={editForm.activationCode}
+            onChange={(e) => setEditForm(prev => ({ ...prev, activationCode: e.target.value }))}
           />
           <div className="flex justify-end gap-2 mt-6">
             <Button variant="outline" onClick={() => setEditModalOpen(false)}>Cancel</Button>
