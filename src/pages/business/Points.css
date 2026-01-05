@@ -193,3 +193,30 @@
 .result-balance {
   color: var(--color-gray-500);
 }
+
+@media (max-width: 768px) {
+  .points-page {
+    max-width: 100%;
+  }
+
+  .step-card {
+    padding: var(--space-4);
+  }
+
+  .item-option {
+    padding: var(--space-4);
+  }
+
+  .item-option-name {
+    font-size: var(--font-size-base);
+  }
+
+  .item-option-points {
+    font-size: var(--font-size-xl);
+  }
+  
+  .search-result-item {
+    padding: var(--space-4);
+    border: 1px solid var(--color-gray-100);
+  }
+}

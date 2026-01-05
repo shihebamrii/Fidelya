@@ -118,37 +118,62 @@ const BusinessDashboard = () => {
               <p className="text-gray-500">No transactions yet</p>
             </div>
           ) : (
-            <div className="table-container">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Client</th>
-                    <th>Item</th>
-                    <th>Points</th>
-                    <th>Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.map((tx) => (
-                    <tr key={tx._id}>
-                      <td className="font-medium">{tx.clientId?.name || tx.clientId?.clientId}</td>
-                      <td>
-                        {tx.itemId ? (
-                          <Badge variant={tx.itemId.type}>{tx.itemId.name}</Badge>
-                        ) : (
-                          <span className="text-gray-400">Manual</span>
-                        )}
-                      </td>
-                      <td>
-                        <span className={tx.points >= 0 ? 'text-success font-semibold' : 'text-danger font-semibold'}>
-                          {tx.points >= 0 ? '+' : ''}{tx.points}
-                        </span>
-                      </td>
-                      <td>{new Date(tx.createdAt).toLocaleTimeString()}</td>
+            <div className="table-wrapper">
+              {/* Desktop Table */}
+              <div className="table-container hidden-mobile">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Client</th>
+                      <th>Item</th>
+                      <th>Points</th>
+                      <th>Time</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {transactions.map((tx) => (
+                      <tr key={tx._id}>
+                        <td className="font-medium">{tx.clientId?.name || tx.clientId?.clientId}</td>
+                        <td>
+                          {tx.itemId ? (
+                            <Badge variant={tx.itemId.type}>{tx.itemId.name}</Badge>
+                          ) : (
+                            <span className="text-gray-400">Manual</span>
+                          )}
+                        </td>
+                        <td>
+                          <span className={tx.points >= 0 ? 'text-success font-semibold' : 'text-danger font-semibold'}>
+                            {tx.points >= 0 ? '+' : ''}{tx.points}
+                          </span>
+                        </td>
+                        <td>{new Date(tx.createdAt).toLocaleTimeString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile List Cards */}
+              <div className="mobile-list show-mobile">
+                {transactions.map((tx) => (
+                  <div key={tx._id} className="mobile-tx-card">
+                    <div className="mobile-tx-info">
+                      <div className="font-semibold">{tx.clientId?.name || tx.clientId?.clientId}</div>
+                      <div className="text-xs text-gray-500">{new Date(tx.createdAt).toLocaleTimeString()}</div>
+                    </div>
+                    <div className="mobile-tx-item">
+                      {tx.itemId ? (
+                        <Badge variant={tx.itemId.type} size="sm">{tx.itemId.name}</Badge>
+                      ) : (
+                        <span className="text-xs text-gray-400">Manual</span>
+                      )}
+                    </div>
+                    <div className={`mobile-tx-points ${tx.points >= 0 ? 'text-success' : 'text-danger'} font-bold`}>
+                      {tx.points >= 0 ? '+' : ''}{tx.points}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </Card.Content>

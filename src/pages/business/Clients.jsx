@@ -75,61 +75,91 @@ const Clients = () => {
         </Card>
       ) : (
         <Card>
-          <div className="table-container">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Client</th>
-                  <th>Contact</th>
-                  <th>Points</th>
-                  <th>Joined</th>
-                </tr>
-              </thead>
-              <tbody>
-                {clients.map((client) => (
-                  <tr 
-                    key={client._id} 
-                    onClick={() => navigate(`/business/clients/${client.clientId}`)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div style={{
-                          width: '36px',
-                          height: '36px',
-                          borderRadius: 'var(--radius-full)',
-                          background: 'var(--color-primary-bg)',
-                          color: 'var(--color-primary)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontWeight: 600,
-                          fontSize: 'var(--font-size-sm)'
-                        }}>
-                          {client.name.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="font-medium">{client.name}</div>
-                          <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-gray-500)' }}>
-                            {client.clientId}
+          <div className="table-wrapper">
+            {/* Desktop Table View */}
+            <div className="table-container hidden-mobile">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th>Contact</th>
+                    <th>Points</th>
+                    <th>Joined</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {clients.map((client) => (
+                    <tr 
+                      key={client._id} 
+                      onClick={() => navigate(`/business/clients/${client.clientId}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <td>
+                        <div className="flex items-center gap-3">
+                          <div style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: 'var(--radius-full)',
+                            background: 'var(--color-primary-bg)',
+                            color: 'var(--color-primary)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 600,
+                            fontSize: 'var(--font-size-sm)'
+                          }}>
+                            {client.name.charAt(0)}
+                          </div>
+                          <div>
+                            <div className="font-medium">{client.name}</div>
+                            <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-gray-500)' }}>
+                              {client.clientId}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div>{client.phone || '-'}</div>
-                      <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-gray-500)' }}>
-                        {client.email || ''}
-                      </div>
-                    </td>
-                    <td>
-                      <Badge variant="primary">{client.points} pts</Badge>
-                    </td>
-                    <td>{new Date(client.createdAt).toLocaleDateString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      </td>
+                      <td>
+                        <div>{client.phone || '-'}</div>
+                        <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-gray-500)' }}>
+                          {client.email || ''}
+                        </div>
+                      </td>
+                      <td>
+                        <Badge variant="primary">{client.points} pts</Badge>
+                      </td>
+                      <td>{new Date(client.createdAt).toLocaleDateString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="mobile-list show-mobile">
+              {clients.map((client) => (
+                <div 
+                  key={client._id} 
+                  className="mobile-client-card"
+                  onClick={() => navigate(`/business/clients/${client.clientId}`)}
+                >
+                  <div className="mobile-client-avatar">
+                    {client.name.charAt(0)}
+                  </div>
+                  <div className="mobile-client-info">
+                    <div className="font-bold">{client.name}</div>
+                    <div className="text-xs text-gray-500">{client.phone || client.email || client.clientId}</div>
+                  </div>
+                  <div className="mobile-client-points">
+                    <Badge variant="primary" size="sm">{client.points} pts</Badge>
+                  </div>
+                  <div className="mobile-client-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </Card>
       )}
