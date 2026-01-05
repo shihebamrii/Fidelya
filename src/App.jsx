@@ -111,6 +111,8 @@ const businessSidebarItems = [
   },
 ];
 
+import Landing from './pages/Landing';
+
 // Home redirect based on role
 const HomeRedirect = () => {
   const { user, loading, isAuthenticated } = useAuth();
@@ -118,7 +120,7 @@ const HomeRedirect = () => {
   if (loading) return null;
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Landing />;
   }
 
   if (user?.role === 'admin') {
