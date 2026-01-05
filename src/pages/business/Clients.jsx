@@ -28,14 +28,14 @@ const Clients = () => {
         <p className="page-subtitle">Search and manage your clients</p>
       </div>
 
-      <div className="flex items-center gap-3 mb-6" style={{ maxWidth: '450px' }}>
+      <div className="flex items-center gap-3 mb-8 glass p-4 rounded-xl" style={{ maxWidth: '600px' }}>
         <div style={{ flex: 1 }}>
           <Input
             placeholder="Search by name, phone, email, or ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             icon={
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21l-4.35-4.35" />
               </svg>
@@ -45,10 +45,10 @@ const Clients = () => {
         <Button 
           variant="secondary" 
           onClick={() => setIsScannerOpen(true)}
-          style={{ height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          style={{ height: '48px', width: '48px', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           title="Scan QR Code"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
             <circle cx="12" cy="13" r="4" />
           </svg>
@@ -62,19 +62,30 @@ const Clients = () => {
       />
 
       {isLoading ? (
-        <div className="flex justify-center p-8">
+        <div className="flex justify-center p-12">
           <Spinner size="lg" />
         </div>
       ) : clients.length === 0 ? (
-        <Card>
-          <div className="empty-state">
-            <p className="text-gray-500">
-              {searchQuery ? 'No clients found matching your search' : 'No clients yet'}
-            </p>
+        <div className="empty-state animate-fade-in">
+          <div className="empty-state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+            </svg>
           </div>
-        </Card>
+          <h2 className="empty-state-title">{searchQuery ? 'No results found' : 'No clients yet'}</h2>
+          <p className="empty-state-text">
+            {searchQuery 
+              ? `We couldn't find any client matching "${searchQuery}". Try a different name or phone number.` 
+              : "Client list is empty. Start adding clients to manage their points and rewards."}
+          </p>
+          {searchQuery && (
+            <Button variant="secondary" onClick={() => setSearchQuery('')}>Clear Search</Button>
+          )}
+        </div>
       ) : (
-        <Card>
+        <Card className="animate-fade-in">
           <div className="table-wrapper">
             {/* Desktop Table View */}
             <div className="table-container hidden-mobile">

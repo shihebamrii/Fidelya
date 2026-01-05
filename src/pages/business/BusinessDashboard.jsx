@@ -29,9 +29,9 @@ const BusinessDashboard = () => {
 
       {/* Stats */}
       <div className="stats-grid">
-        <div className="stat-card">
-          <div className="stat-icon stat-icon-success">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="stat-card glass animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <div className="stat-icon bg-gradient-success">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
               <polyline points="17 6 23 6 23 12" />
             </svg>
@@ -42,9 +42,9 @@ const BusinessDashboard = () => {
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-icon stat-icon-danger">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="stat-card glass animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="stat-icon bg-gradient-danger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="12" cy="12" r="10" />
               <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
             </svg>
@@ -55,51 +55,60 @@ const BusinessDashboard = () => {
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-icon stat-icon-primary">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="stat-card glass animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="stat-icon bg-gradient-primary">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
               <line x1="1" y1="10" x2="23" y2="10" />
             </svg>
           </div>
           <div className="stat-content">
-            <span className="stat-label">Transactions Today</span>
+            <span className="stat-label">Daily Reach</span>
             <span className="stat-value">{transactions.length}</span>
           </div>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="quick-actions mb-6">
-        <Card className="action-card" hover onClick={() => window.location.href = '/business/points'}>
+      <div className="quick-actions-header">
+        <h2 className="section-title">Quick Actions</h2>
+      </div>
+      <div className="quick-actions mb-8">
+        <Card className="action-card card-hover" onClick={() => window.location.href = '/business/points'}>
           <div className="action-icon action-icon-success">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 5v14M5 12h14" />
             </svg>
           </div>
-          <h3>Add Points</h3>
-          <p>Award points to a client</p>
+          <div className="action-info">
+            <h3>Add Points</h3>
+            <p>Reward loyal clients instantly</p>
+          </div>
         </Card>
 
-        <Card className="action-card" hover onClick={() => window.location.href = '/business/clients'}>
+        <Card className="action-card card-hover" onClick={() => window.location.href = '/business/clients'}>
           <div className="action-icon action-icon-primary">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21l-4.35-4.35" />
             </svg>
           </div>
-          <h3>Find Client</h3>
-          <p>Search for a client</p>
+          <div className="action-info">
+            <h3>Find Client</h3>
+            <p>Access client history & profile</p>
+          </div>
         </Card>
 
-        <Card className="action-card" hover onClick={() => window.location.href = '/business/items'}>
+        <Card className="action-card card-hover" onClick={() => window.location.href = '/business/items'}>
           <div className="action-icon action-icon-warning">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
-          <h3>Manage Items</h3>
-          <p>Edit rewards & offers</p>
+          <div className="action-info">
+            <h3>Manage Items</h3>
+            <p>Configure rewards & offers</p>
+          </div>
         </Card>
       </div>
 

@@ -87,9 +87,9 @@ const Items = () => {
   };
 
   const renderItemCard = (item) => (
-    <Card key={item._id} className="item-card">
+    <Card key={item._id} className="item-card card-hover animate-fade-in-scale">
       <div className="item-header">
-        <Badge variant={item.type}>{item.type}</Badge>
+        <Badge variant={item.type} size="sm">{item.type}</Badge>
         <span className="item-points">{item.points} pts</span>
       </div>
       <h3 className="item-name">{item.name}</h3>
@@ -103,7 +103,7 @@ const Items = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center p-16">
+      <div className="flex justify-center items-center p-24">
         <Spinner size="lg" />
       </div>
     );
@@ -111,16 +111,16 @@ const Items = () => {
 
   return (
     <div className="items-page animate-fade-in">
-      <div className="page-header flex justify-between items-center">
+      <div className="page-header flex justify-between items-center mb-10">
         <div>
           <h1 className="page-title">Items</h1>
-          <p className="page-subtitle">Manage your earn and redeem items</p>
+          <p className="page-subtitle">Configure earn and redeem rewards</p>
         </div>
-        <Button onClick={() => openModal()}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <Button onClick={() => openModal()} className="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M12 5v14M5 12h14" />
           </svg>
-          Add Item
+          New Item
         </Button>
       </div>
 
@@ -128,14 +128,19 @@ const Items = () => {
       <div className="items-section">
         <h2 className="section-title">
           <span className="section-dot section-dot-success"></span>
-          Earn Items ({earnItems.length})
+          Earn Points ({earnItems.length})
         </h2>
         {earnItems.length === 0 ? (
-          <Card>
-            <div className="empty-state">
-              <p className="text-gray-500">No earn items yet</p>
+          <div className="empty-state">
+            <div className="empty-state-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v8M8 12h8" />
+              </svg>
             </div>
-          </Card>
+            <h3 className="empty-state-title">No earn items</h3>
+            <p className="empty-state-text">Create items that allow clients to earn points upon purchase.</p>
+          </div>
         ) : (
           <div className="items-grid">
             {earnItems.map(renderItemCard)}
