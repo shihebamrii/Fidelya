@@ -1151,6 +1151,260 @@ ul {
   transform: none;
 }
 
+/* CONTACT SECTION - ENHANCED */
+.contact-section {
+  padding: 120px 0;
+  background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+              #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Info Panel */
+.contact-info-panel {
+  color: var(--c-text-main);
+}
+
+.contact-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+}
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.benefit-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--c-text-main);
+}
+
+.benefit-icon {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 1px solid rgba(79, 70, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.method-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--c-text-muted);
+  font-size: 1rem;
+}
+
+.social-box p {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  margin-bottom: 16px;
+}
+
+.social-pills {
+  display: flex;
+  gap: 12px;
+}
+
+.social-pill {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+.social-pill:hover {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+  transform: translateY(-2px);
+}
+
+/* Form Panel */
+.contact-form-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 32px;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.08),
+              0 18px 36px -18px rgba(0, 0, 0, 0.05),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.form-header {
+  margin-bottom: 40px;
+}
+
+.form-header h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.form-header p {
+  color: var(--c-text-muted);
+  font-size: 1rem;
+}
+
+.enhanced-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-group.animate-input {
+  position: relative;
+}
+
+.modern-input {
+  width: 100%;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #e2e8f0;
+  font-size: 1.05rem;
+  font-family: inherit;
+  color: var(--c-text-main);
+  transition: 0.3s;
+}
+
+.modern-textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.modern-input:focus {
+  outline: none;
+}
+
+.form-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  color: var(--c-text-muted);
+  font-size: 1.05rem;
+  pointer-events: none;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-input:focus ~ label,
+.modern-input:not(:placeholder-shown) ~ label {
+  top: -20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--c-primary);
+}
+
+.input-focus-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--c-primary);
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-input:focus ~ .input-focus-line {
+  width: 100%;
+}
+
+.modern-submit {
+  margin-top: 12px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  transition: 0.3s;
+}
+
+.submit-icon {
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-submit:hover .submit-icon {
+  transform: translate(4px, -4px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+  .benefit-list {
+    align-items: center;
+  }
+  .contact-methods {
+    align-items: center;
+  }
+  .social-pills {
+    justify-content: center;
+  }
+  .contact-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 80px 0;
+  }
+  .contact-form-panel {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+}
+
 /* PRICING */
 .pricing-section {
   padding: 100px 0;

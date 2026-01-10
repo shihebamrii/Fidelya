@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
 import './Landing.css';
 
 // Translations
@@ -100,6 +100,19 @@ const translations = {
     'footer.privacy': 'Confidentialité',
     'footer.terms': 'Conditions',
     'footer.copyright': '© 2025 Fidelya Inc. Tous droits réservés.',
+    'contact.title': 'Contactez-nous pour une démo',
+    'contact.subtitle': 'Remplissez le formulaire ci-dessous et nous vous répondrons sur WhatsApp.',
+    'contact.name': 'Nom',
+    'contact.email': 'Email',
+    'contact.message': 'Message',
+    'contact.send': 'Envoyer sur WhatsApp',
+    'nav.contact': 'Contact',
+    'contact.info.title': 'Pourquoi choisir Fidelya?',
+    'contact.info.item1': 'Cartes de fidélité numériques sans application',
+    'contact.info.item2': 'Configuration en moins de 5 minutes',
+    'contact.info.item3': 'Suivi des clients en temps réel',
+    'contact.info.item4': 'Support dédié 7j/7',
+    'contact.info.social': 'Suivez-nous',
   },
   en: {
     'nav.howItWorks': 'How it Works',
@@ -197,6 +210,19 @@ const translations = {
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms',
     'footer.copyright': '© 2025 Fidelya Inc. All rights reserved.',
+    'contact.title': 'Contact Us for a Demo',
+    'contact.subtitle': 'Fill out the form below and we will get back to you on WhatsApp.',
+    'contact.name': 'Name',
+    'contact.email': 'Email',
+    'contact.message': 'Message',
+    'contact.send': 'Send to WhatsApp',
+    'nav.contact': 'Contact',
+    'contact.info.title': 'Why Choose Fidelya?',
+    'contact.info.item1': 'App-less digital loyalty cards',
+    'contact.info.item2': 'Setup in under 5 minutes',
+    'contact.info.item3': 'Real-time customer tracking',
+    'contact.info.item4': 'Dedicated support 7 days/week',
+    'contact.info.social': 'Follow Us',
   },
   ar: {
     'nav.howItWorks': 'كيف يعمل',
@@ -294,11 +320,23 @@ const translations = {
     'footer.privacy': 'الخصوصية',
     'footer.terms': 'الشروط',
     'footer.copyright': '© 2025 فيديليا. جميع الحقوق محفوظة.',
+    'contact.title': 'اتصل بنا للحصول على عرض تجريبي',
+    'contact.subtitle': 'املأ النموذج أدناه وسنقوم بالرد عليك عبر WhatsApp.',
+    'contact.name': 'الاسم',
+    'contact.email': 'البريد الإلكتروني',
+    'contact.message': 'الرسالة',
+    'contact.send': 'إرسال عبر WhatsApp',
+    'nav.contact': 'اتصل بنا',
+    'contact.info.title': 'لماذا تختار فيديليا؟',
+    'contact.info.item1': 'بطاقات ولاء رقمية بدون تطبيق',
+    'contact.info.item2': 'الإعداد في أقل من 5 دقائق',
+    'contact.info.item3': 'تتبع العملاء في الوقت الفعلي',
+    'contact.info.item4': 'دعم مخصص على مدار الأسبوع',
+    'contact.info.social': 'تابعنا',
   },
 };
 
 function Landing() {
-  const navigate = useNavigate();
   const [lang, setLang] = useState(localStorage.getItem('fidelya-lang') || 'fr');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFAQ, setActiveFAQ] = useState(null);
@@ -370,9 +408,7 @@ function Landing() {
     return () => window.removeEventListener('resize', resize);
   }, [lang]);
 
-  const handleLogin = () => {
-    navigate('/login');
-  };
+
 
   return (
     <div className="landing-page">
@@ -386,10 +422,10 @@ function Landing() {
             <span className="brand-name">Fidelya</span>
           </a>
 
-          <div className="nav-links hidden-mobile">
+            <div className="nav-links hidden-mobile">
             <a href="#how-it-works" className="nav-link">{t('nav.howItWorks')}</a>
             <a href="#features" className="nav-link">{t('nav.features')}</a>
-            <a href="#pricing" className="nav-link">{t('nav.pricing')}</a>
+            <a href="#contact" className="nav-link">{t('nav.contact')}</a>
           </div>
 
           <div className="nav-actions">
@@ -398,8 +434,6 @@ function Landing() {
               <button className={`lang-btn ${lang === 'en' ? 'active' : ''}`} onClick={() => setLang('en')}>EN</button>
               <button className={`lang-btn ${lang === 'ar' ? 'active' : ''}`} onClick={() => setLang('ar')}>AR</button>
             </div>
-
-            <button onClick={handleLogin} className="btn btn-primary">{t('nav.startTrial')}</button>
           </div>
 
           <button
@@ -419,8 +453,7 @@ function Landing() {
           <div className="mobile-menu-content">
             <a href="#how-it-works" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.howItWorks')}</a>
             <a href="#features" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.features')}</a>
-            <a href="#pricing" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.pricing')}</a>
-            <button onClick={handleLogin} className="btn btn-primary btn-full mt-4">{t('nav.startTrial')}</button>
+            <a href="#contact" className="mobile-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.contact')}</a>
 
             <div className="mobile-lang-switcher mt-4">
               <button className={`lang-btn ${lang === 'fr' ? 'active' : ''}`} onClick={() => setLang('fr')}>FR</button>
@@ -448,8 +481,8 @@ function Landing() {
             <p className="hero-subtitle fade-in-up delay-2">{t('hero.subtitle')}</p>
 
             <div className="hero-cta fade-in-up delay-3">
-              <Link to="/login" className="btn btn-primary btn-lg">{t('hero.getStarted')}</Link>
-              <a href="#demo" className="btn btn-outline btn-lg">{t('hero.viewDemo')}</a>
+              <a href="#contact" className="btn btn-primary btn-lg">{t('nav.contact')}</a>
+              <a href="#contact" className="btn btn-outline btn-lg">{t('hero.viewDemo')}</a>
             </div>
 
             <div className="trusted-by fade-in-up delay-4">
@@ -723,56 +756,102 @@ function Landing() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="pricing-section">
+      {/* Contact Section */}
+      <section id="contact" className="contact-section">
         <div className="container">
-          <h2 className="section-title text-center">{t('pricing.title')}</h2>
-          <div className="pricing-grid">
-            <div className="price-plan">
-              <h3 className="plan-name">{t('pricing.starter.name')}</h3>
-              <div className="plan-price">
-                <span>{t('pricing.starter.price')}</span>
-                <span>{t('pricing.starter.period')}</span>
-              </div>
-              <p className="plan-desc">{t('pricing.starter.desc')}</p>
-              <ul className="plan-features">
-                <li>{t('pricing.starter.feat1')}</li>
-                <li>{t('pricing.starter.feat2')}</li>
-                <li>{t('pricing.starter.feat3')}</li>
-                <li>{t('pricing.starter.feat4')}</li>
+          <div className="contact-wrapper">
+            {/* Info Side */}
+            <div className="contact-info-panel fade-in-up">
+              <h2 className="contact-title">{t('contact.info.title')}</h2>
+              <ul className="benefit-list">
+                <li>
+                  <div className="benefit-icon">✨</div>
+                  <span>{t('contact.info.item1')}</span>
+                </li>
+                <li>
+                  <div className="benefit-icon">⚡</div>
+                  <span>{t('contact.info.item2')}</span>
+                </li>
+                <li>
+                  <div className="benefit-icon">📊</div>
+                  <span>{t('contact.info.item3')}</span>
+                </li>
+                <li>
+                  <div className="benefit-icon">🛡️</div>
+                  <span>{t('contact.info.item4')}</span>
+                </li>
               </ul>
-              <button onClick={handleLogin} className="btn btn-outline btn-full">{t('pricing.starter.cta')}</button>
+
+              <div className="contact-methods">
+                <div className="method-item">
+                  <span className="method-icon">📧</span>
+                  <span>contact@fidelya.com</span>
+                </div>
+                <div className="method-item">
+                  <span className="method-icon">📍</span>
+                  <span>Tunis, Tunisia</span>
+                </div>
+              </div>
+
+              <div className="social-box">
+                <p>{t('contact.info.social')}</p>
+                <div className="social-pills">
+                  <a href="#" className="social-pill">IG</a>
+                  <a href="#" className="social-pill">FB</a>
+                  <a href="#" className="social-pill">LN</a>
+                </div>
+              </div>
             </div>
 
-            <div className="price-plan featured">
-              <div className="feature-tag">{t('pricing.pro.badge')}</div>
-              <h3 className="plan-name">{t('pricing.pro.name')}</h3>
-              <div className="plan-price">
-                <span>{t('pricing.pro.price')}</span>
-                <span>{t('pricing.pro.period')}</span>
+            {/* Form Side */}
+            <div className="contact-form-panel fade-in-up delay-1">
+              <div className="form-header">
+                <h3>{t('contact.title')}</h3>
+                <p>{t('contact.subtitle')}</p>
               </div>
-              <p className="plan-desc">{t('pricing.pro.desc')}</p>
-              <ul className="plan-features">
-                <li><strong>{t('pricing.pro.feat1')}</strong></li>
-                <li><strong>{t('pricing.pro.feat2')}</strong></li>
-                <li>{t('pricing.pro.feat3')}</li>
-                <li>{t('pricing.pro.feat4')}</li>
-                <li>{t('pricing.pro.feat5')}</li>
-              </ul>
-              <button onClick={handleLogin} className="btn btn-primary btn-full">{t('pricing.pro.cta')}</button>
-            </div>
+              
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                const text = `Hi Fidelya! I'm ${name} (${email}). ${message}`;
+                const whatsappUrl = `https://wa.me/21653400440?text=${encodeURIComponent(text)}`;
+                window.open(whatsappUrl, '_blank');
+              }} className="enhanced-contact-form">
+                <div className="form-row">
+                  <div className="form-group animate-input">
+                    <input type="text" name="name" className="modern-input" required placeholder=" " id="form-name" />
+                    <label htmlFor="form-name">{t('contact.name')}</label>
+                    <div className="input-focus-line"></div>
+                  </div>
+                </div>
 
-            <div className="price-plan">
-              <h3 className="plan-name">{t('pricing.enterprise.name')}</h3>
-              <div className="plan-price">{t('pricing.enterprise.price')}</div>
-              <p className="plan-desc">{t('pricing.enterprise.desc')}</p>
-              <ul className="plan-features">
-                <li>{t('pricing.enterprise.feat1')}</li>
-                <li>{t('pricing.enterprise.feat2')}</li>
-                <li>{t('pricing.enterprise.feat3')}</li>
-                <li>{t('pricing.enterprise.feat4')}</li>
-              </ul>
-              <a href="#" className="btn btn-outline btn-full">{t('pricing.enterprise.cta')}</a>
+                <div className="form-row">
+                  <div className="form-group animate-input">
+                    <input type="email" name="email" className="modern-input" required placeholder=" " id="form-email" />
+                    <label htmlFor="form-email">{t('contact.email')}</label>
+                    <div className="input-focus-line"></div>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group animate-input">
+                    <textarea name="message" className="modern-input modern-textarea" required rows="4" placeholder=" " id="form-message"></textarea>
+                    <label htmlFor="form-message">{t('contact.message')}</label>
+                    <div className="input-focus-line"></div>
+                  </div>
+                </div>
+
+                <button type="submit" className="btn btn-primary btn-full btn-lg modern-submit">
+                  <span>{t('contact.send')}</span>
+                  <svg className="submit-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -801,7 +880,7 @@ function Landing() {
         <div className="container text-center">
           <h2>{t('cta.title')}</h2>
           <p>{t('cta.subtitle')}</p>
-          <button onClick={handleLogin} className="btn btn-primary btn-lg">{t('cta.button')}</button>
+          <a href="#contact" className="btn btn-primary btn-lg">{t('nav.contact')}</a>
         </div>
       </section>
 
@@ -821,7 +900,7 @@ function Landing() {
               <h4>{t('footer.product')}</h4>
               <a href="#features">{t('footer.features')}</a>
               <a href="#how-it-works">{t('footer.security')}</a>
-              <a href="#pricing">{t('footer.enterprise')}</a>
+              <a href="#contact">{t('nav.contact')}</a>
             </div>
 
             <div className="footer-col">
